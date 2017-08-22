@@ -6,7 +6,7 @@ import promisize from '../lib/promisize'
 const saveItem = promisize(itemsClient.saveItem, itemsClient)
 const getItems = promisize(itemsClient.getItems, itemsClient)
 const getItemByItemId = promisize(itemsClient.getItemByItemId, itemsClient)
-const getItemsGrid = promisize(itemsClient.getItemsGrid, itemsClient)
+const getItemsSearch = promisize(itemsClient.getItemsSearch, itemsClient)
 
 const client = express.Router()
 
@@ -19,12 +19,11 @@ client.post('/items', async (req, res) => {
 })
 
 client.get('/items', async (req, res) => {
-  let search = req.query.search || '{}'
   let limit = parseInt(req.query.limit) || 10
   let page = parseInt(req.query.page) || 0
   let sort = req.query.sort || 'name'
-  let fields = req.query.fields || ''
-  const request = { search, limit, page, sort, fields }
+  // let fields = req.query.fields || ''
+  const request = { limit, page, sort }
   try {
     return res.json(await getItems(request))
   } catch (err) {
@@ -32,15 +31,15 @@ client.get('/items', async (req, res) => {
   }
 })
 
-client.get('/items/grid', async (req, res) => {
-  let search = req.query.search || '{}'
+client.get('/items/search', async (req, res) => {
+  let q = req.query.q || ''
   let limit = parseInt(req.query.limit) || 10
   let page = parseInt(req.query.page) || 0
   let sort = req.query.sort || 'name'
-  const request = { search, limit, page, sort }
+  const request = { q, limit, page, sort }
 
   try {
-    return res.json(await getItemsGrid(request))
+    return res.json(await getItemsSearch(request))
   } catch (err) {
     console.log(err)
   }

@@ -4,19 +4,12 @@ const ItemService = {
   getItems (call, cb) {
     const params = call.request
     console.log('REQUEST PARAMS: ', params)
-    let search
-    if (params.search !== '{}') {
-      search = `{ $text: { $search: '${params.search}' } }`
-    } else { search = params.search }
-
-    let fields = params.fields.replace(/,/g, ' ')
-
-    console.log(search)
+    let sort = params.sort.replace(/,/g, ' ')
     try {
-      Item.find({ $text: { $search: params.search } })
-        .select(fields)
+      Item.find({ })
+        .select('name price images')
         .limit(params.limit)
-        .sort(params.sort)
+        .sort(sort)
         .skip(params.limit * params.page)
         .exec((err, data) => {
           if (err) return new Error('getItems error', err)
@@ -50,18 +43,23 @@ const ItemService = {
     }
   },
 
-  getItemsGrid (call, cb) {
+  getItemsSearch (call, cb) {
     const params = call.request
     console.log('REQUEST PARAMS: ', params)
-    let search = params.search.replace(/,/g, ' ')
+    let criteria
+    if (params.q.length > 3) {
+      // criteria = `'\"'${params.q.split(' ').join('\" \"')}'\"'`
+      criteria = params.q.replace(/,/g, ' ')
+    } else { criteria = '' }
+    let sort = params.sort.replace(/,/g, ' ')
     try {
-      Item.find({ $text: { $search: search } })
+      Item.find({ $text: { $search: criteria, $caseSensitive: false } })
         .select('name price images')
         .limit(params.limit)
-        .sort(params.sort)
+        .sort(sort)
         .skip(params.limit * params.page)
         .exec((err, data) => {
-          if (err) return new Error('getItemsGrid error', err)
+          if (err) return new Error('getItemsSearch error', err)
           let docs = data.map((doc) => {
             return doc.toJSON()
           })
@@ -69,8 +67,8 @@ const ItemService = {
           cb(null, docs)
         })
     } catch (err) {
-      console.log('getItemsGrid error', err)
-      cb(new Error('getItemsGrid error', err))
+      console.log('getItemsSearch error', err)
+      cb(new Error('getItemsSearch error', err))
     }
   }
 }

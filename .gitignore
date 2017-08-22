@@ -15,3 +15,4 @@ items-server/node_modules
 rest-gateway/dist
 rest-gateway/k8s
 rest-gateway/node_modules
+rest-gateway/src/graphql

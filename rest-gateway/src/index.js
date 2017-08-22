@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 
 // import schema from './graphql'
 import routes from './routes'
+import { swaggerSpec } from './middleware/swagger'
 
 const app = express()
 
@@ -13,7 +14,16 @@ app.options('*', cors())
 
 app.use(bodyParser.json())
 
-app.use('/api', routes)
+app.use('/v0', routes)
+
+// ======== *** DEVELOPMENT ONLY ROUTES ***
+if (process.env.NODE_ENV === 'development') {
+  // Swagger API docs
+  app.get('/api-docs.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json')
+    res.send(swaggerSpec)
+  })
+}
 
 /**
  * app.use('/graphql', graphqlHTTP({
