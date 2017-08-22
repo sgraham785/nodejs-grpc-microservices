@@ -19,4 +19,9 @@ up-dev:
 		$(MAKE) -C $$dir up-dev; \
 	done
 
-.PHONY: all
+down:
+	for dir in $(CODE_DIRS); do \
+		$(MAKE) -C $$dir down; \
+	done
+
+.PHONY: up-dev down
