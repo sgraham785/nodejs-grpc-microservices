@@ -31,7 +31,7 @@ npm run db:seed
 
 ### Swagger
 
-TODO
+After app servers start up swagger ui will automatically read from the rest-server/api-docs.json. You should be able to access it [here](http://localhost:8080)
 
 ## Running the tests
 
@@ -43,13 +43,17 @@ TBD
 
 ## Built With
 
-TODO
+* GRPC
+* Protobufs
+* Mongoose
+* MongoDB
+* Express
 
 ## Contributing
-1. Pull this repo's develop branch
-2. Create and checkout a feature branch
-3. Make your changes in feature branch
-3. Open a merge/pull request to develop
+1. Create your feature branch: `git checkout -b my-new-feature`
+2. Commit your changes: `git commit -am 'Add some feature'`
+3. Push to the branch: `git push origin my-new-feature`
+4. Submit a pull/merge request to a maintainer :D
 
 ## Versioning
 
