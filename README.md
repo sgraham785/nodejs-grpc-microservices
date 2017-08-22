@@ -20,18 +20,33 @@ This should install everything the apps need to run on your local machines.
 cd workplace-api
 make
 ```
-
-### Usage
-
 Seed the database (defaults to 200 records)
 ```
 cd /path/to/items-server
 npm run db:seed
 ```
+**NOTE:** Full text search may take sometime to index after your first request. TODO: add way to verify search index is available, for now use [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
+
+### Usage
+
+You can then use swagger or `curl` for requests:
+```
+curl http://localhost:3000/v0/items/\?sort\=-name 
+```
+To stop all the containers: 
+```
+cd /path/to/workplace-api
+make down
+```
+To start them back up again with out rebuilding them:
+```
+cd /path/to/workplace-api
+make up-dev
+```
 
 ### Swagger
 
-After app servers start up swagger ui will automatically read from the rest-server/api-docs.json. You should be able to access it [here](http://localhost:8080)
+After app servers start up swagger ui will automatically read from the rest-server/api-docs.json. You should be able to access swagger [here](http://localhost:8080)
 
 ## Running the tests
 
