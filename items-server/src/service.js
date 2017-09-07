@@ -1,18 +1,21 @@
 import Item from './model'
+import removeEmptyObj from './utils/removeEmptyObj'
 
 const ItemService = {
-  getItems (call, cb) {
+  listItems (call, cb) {
     const params = call.request
-    console.log('REQUEST PARAMS: ', params)
+    console.log('REQUEST PARAMS: ', JSON.stringify(params))
+    const filter = removeEmptyObj(params.filter)
+    console.log('filter --> ', filter)
     let sort = params.sort.replace(/,/g, ' ')
     try {
-      Item.find({ })
-        .select('name price images')
+      Item.find({ $or: [ filter ] })
+        .select('name price image')
         .limit(params.limit)
         .sort(sort)
         .skip(params.limit * params.page)
         .exec((err, data) => {
-          if (err) return new Error('getItems error', err)
+          if (err) return new Error('listItems error', err)
           let docs = data.map((doc) => {
             return doc.toJSON()
           })
@@ -20,12 +23,12 @@ const ItemService = {
           cb(null, docs)
         })
     } catch (err) {
-      console.log('getItems error', err)
-      cb(new Error('getItems error', err))
+      console.log('listItems error', err)
+      cb(new Error('listItems error', err))
     }
   },
 
-  getItemByItemId (call, cb) {
+  getItemById (call, cb) {
     const params = call.request
     try {
       Item.find({ _id: params._id })
@@ -43,7 +46,7 @@ const ItemService = {
     }
   },
 
-  getItemsSearch (call, cb) {
+  searchItems (call, cb) {
     const params = call.request
     console.log('REQUEST PARAMS: ', params)
     let criteria
@@ -54,7 +57,7 @@ const ItemService = {
     let sort = params.sort.replace(/,/g, ' ')
     try {
       Item.find({ $text: { $search: criteria, $caseSensitive: false } })
-        .select('name price images')
+        .select('name price image')
         .limit(params.limit)
         .sort(sort)
         .skip(params.limit * params.page)

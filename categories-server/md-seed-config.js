@@ -1,6 +1,6 @@
 import mongooseLib from 'mongoose'
 
-import ItemsSeeder from './src/db/seeds/items.seeder'
+import FiltersSeeder from './src/db/seeds/filters.seeder'
 
 mongooseLib.Promise = global.Promise
 
@@ -8,7 +8,7 @@ mongooseLib.Promise = global.Promise
 export const mongoose = mongooseLib
 
 // Export the mongodb url
-export const mongoURL = process.env.DB_URL || 'mongodb://localhost:27017/workplacex'
+export const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/workplacex'
 
 /*
   Seeders List
@@ -16,5 +16,5 @@ export const mongoURL = process.env.DB_URL || 'mongodb://localhost:27017/workpla
   order is important
 */
 export const seedersList = {
-  ItemsSeeder
+  FiltersSeeder
 }

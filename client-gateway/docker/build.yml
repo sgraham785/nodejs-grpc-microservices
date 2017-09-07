@@ -1,0 +1,7 @@
+build:
+  image: node:8.2.1
+  environment:
+    - NODE_ENV=development
+  working_dir: /usr/src/app
+  volumes:
+    - ../:/usr/src/app

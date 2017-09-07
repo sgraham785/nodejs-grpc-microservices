@@ -1,0 +1,27 @@
+version: '3'
+services:
+  client-gateway:
+    build: ../
+    command: npm run start
+    volumes:
+      - ../:/usr/src/app
+      - ../../protos:/usr/src/app/protos
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    external_links:
+      - docker_items-server_1:items-server
+      - docker_categories-server_1:categories-server
+    networks:
+      - default
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    environment:
+      - API_URL=http://0.0.0.0:3000/api-docs.json
+    ports:
+      - 8080:8080
+networks:
+  default:
+    external:
+      name: docker_default

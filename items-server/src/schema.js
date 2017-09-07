@@ -66,16 +66,19 @@ const itemSchema = new Schema({
     required: [true, 'Vendor name required']
   },
   sku: String,
-  category: categorySchema,
-  classification: String,
+  category: String,
+  subcategory: String,
+  use: {
+    type: [String],
+    lowercase: true
+  },
   market: String,
   price: String,
-  details: detailSchema,
-  images: imageSchema,
+  image: String,
+  origin: String,
   tags: {
     type: [String],
     lowercase: true
-    // required: [true, 'Must have at least one tag']
   }
 }, {
   toJSON: {
@@ -89,7 +92,9 @@ const itemSchema = new Schema({
   timestamps: false
 })
 
-itemSchema.index({ classification: 1 })
+itemSchema.index({ category: 1 })
+itemSchema.index({ subcategory: 1 })
+itemSchema.index({ use: 1 })
 itemSchema.index({ market: 1 })
 itemSchema.index({
   name: 'text',

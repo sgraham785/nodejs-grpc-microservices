@@ -1,18 +1,11 @@
 .vscode
-entrance-server
 graphql-gateway
 project-server
-protos
 scripts
 user-server
 wishlist-server
-sample.json
 
-items-server/dist
-items-server/k8s
-items-server/node_modules
-
-rest-gateway/dist
-rest-gateway/k8s
-rest-gateway/node_modules
-rest-gateway/src/graphql
+**/dist
+**/k8s
+**/node_modules
+**/src/graphql

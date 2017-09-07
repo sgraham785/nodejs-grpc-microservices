@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-export IMAGE=items-server
+export IMAGE=categories-server
 ifdef GIT_COMMIT
   export IMAGE_NAME=${IMAGE}:${GIT_COMMIT}
 else
@@ -42,7 +42,7 @@ build:	clean
 	sudo docker build -t $(IMAGE_NAME) .
 build-deps:
 build-dev:	build build-deps
-	sudo docker-compose -f docker/dev.yml up -d items-server
+	sudo docker-compose -f docker/dev.yml up -d
 up-dev:
 	sudo docker-compose -f docker/dev.yml up -d
 up:	down

@@ -1,6 +1,6 @@
 version: '3'
 services:
-  items-server:
+  categories-server:
     build: ../
     command: npm run start
     volumes:
@@ -11,7 +11,7 @@ services:
       - DEBUG=true
       - DB_URL=mongodb://workplacex-db/workplacex
     ports:
-      - "50051:50051"
+      - "50052:50051"
     links:
       - workplacex-db:mongo
     depends_on:

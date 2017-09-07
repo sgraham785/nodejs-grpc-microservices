@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package items;
+
+service Items {
+  // rpc SaveItem (ItemRequest) returns (ItemData);
+  rpc GetItems (ItemsRequest) returns (ItemsGridResponse);
+  rpc GetItemsSearch (ItemsRequest) returns (ItemsGridResponse);
+  rpc GetItemByItemId (ItemIdRequest) returns (ItemsResponse);
+}
+
+message ItemCategories {
+  string _id = 1;
+  string primary = 2;
+  string secondary = 3;
+}
+// is this a re-usable by other items, another db?
+message ItemMaterialFields {
+  string _id = 1;
+  string code = 2;
+  string description = 3;
+  string type = 4;
+  string chip = 5;
+}
+message ItemsMaterials {
+  string _id = 1;
+  ItemMaterialFields primary = 2;
+  ItemMaterialFields secondary = 3;
+}
+// is this a re-usable by other items, another db?
+message ItemColorFields {
+  string _id = 1;
+  string code = 2;
+  string description = 3;
+  string type = 4;
+  int32 pantone = 5;
+  string rgb = 6;
+  string hex = 7;
+  string chip = 8;
+}
+message ItemColors {
+  string _id = 1;
+  ItemColorFields primary = 2;
+  ItemColorFields secondary = 3;
+}
+message ItemDetails {
+  string _id = 1;
+  ItemsMaterials materials = 2;
+  ItemColors colors = 3;
+}
+message ItemImages {
+  string _id = 1;
+  string primary = 2;
+  string secondary = 3;
+  repeated string additional = 4;
+}
+
+message ItemsResponse {
+  message Item {
+    string _id = 1;
+    string name = 2;
+    string vendor = 3;
+    string sku = 4;
+    repeated string categories = 5;
+    string classification = 6;
+    string market = 7;
+    string price = 8;
+    ItemDetails details = 9;
+    ItemImages images = 10;
+    repeated string tags = 11;
+  }
+  repeated Item data = 1;
+}
+
+message ItemsRequest {
+  string q = 1;
+  int32 limit = 2;
+  int32 page = 3;
+  string sort = 4;
+  string fields = 5;
+}
+
+message ItemsGridResponse {
+  repeated ItemsGridData data = 1;
+}
+
+message ItemsGridData {
+  string _id = 1;
+  string name = 2;
+  string price = 3;
+  ItemImages images = 4;
+}
+
+message ItemIdRequest {
+  string _id = 1;
+}

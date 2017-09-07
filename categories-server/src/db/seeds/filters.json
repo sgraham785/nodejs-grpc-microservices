@@ -1,0 +1,52 @@
+[
+  {
+    "vendors": [
+      "Blu Dot",
+      "Steelcase",
+      "Coalesse",
+      "Viccarbe",
+      "West Elm Workspace",
+      "Bernhardt",
+      "Keilhauer",
+      "Stylex",
+      "Halcon",
+      "CB2",
+      "RH",
+      "Turnstone",
+      "Moroso",
+      "Arper"
+    ],
+    "categories": [
+      "Seating",
+      "Desks + Tables",
+      "Storage",
+      "Worktools",
+      "Accessories"
+    ],
+    "subcategories": [
+      "Media",
+      "Lounge",
+      "Task",
+      "Guest",
+      "Office",
+      "Desks",
+      "Occassional",
+      "Conference, Meeting"
+    ],
+    "uses": [
+      "office",
+      "residential",
+      "hospitality",
+      "modern",
+      "residential"
+    ],
+    "markets": [
+      "Contract",
+      "Retail"
+    ],
+    "origins": [
+      "North America",
+      "Europe"
+    ]
+  }
+]

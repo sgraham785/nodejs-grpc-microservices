@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package items.msg;
+import '../google/protobuf/struct.proto';
+
+message Id {
+  string _id = 1;
+}
+
+message Request {
+  string q = 1;
+  int32 limit = 2;
+  int32 page = 3;
+  string sort = 4;
+  Filters filter = 5;
+}
+
+message Response {
+  message Item {
+    string _id = 1;
+    string name = 2;
+    string vendor = 3;
+    string sku = 4;
+    repeated string categories = 5;
+    string subcategory = 6;
+    string market = 7;
+    string price = 8;
+    string image = 11;
+    repeated string tags = 12;
+  }
+  repeated Item data = 1;
+}
+
+message GridResponse {
+  message GridPayload {
+    string _id = 1;
+    string name = 2;
+    string price = 3;
+    string image = 4;
+  }
+  repeated GridPayload data = 1;
+}
+
+/**
+ * Item sub-data
+ */
+message ItemMaterials {
+  message Material {
+    string _id = 1;
+    string code = 2;
+    string description = 3;
+    string type = 4;
+    string chip = 5;
+  }
+  string _id = 1;
+  Material primary = 2;
+  repeated Material additional = 3;
+}
+
+message ItemColors {
+  message Color {
+    string _id = 1;
+    string code = 2;
+    string description = 3;
+    string type = 4;
+    int32 pantone = 5;
+    string rgb = 6;
+    string hex = 7;
+    string chip = 8;
+  }
+  string _id = 1;
+  Color primary = 2;
+  repeated Color additional = 3;
+}
+
+message ItemImages {
+  string _id = 1;
+  string primary = 2;
+  repeated string additional = 4;
+}
+
+message Filters {
+  repeated string vendor = 1;
+  repeated string category = 2;
+  repeated string subcategory = 3;
+  repeated string use = 4;
+  repeated string market = 5;
+  repeated string origin = 6;
+}

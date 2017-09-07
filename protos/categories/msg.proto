@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package categories.msg;
+
+message Id {
+  string _id = 1;
+}
+
+message Data {
+  message Payload {
+    string _id = 1;
+    Filters filters = 2;
+  }
+  repeated Filters data = 1;
+}
+
+message Filters {
+  repeated string vendors = 1;
+  repeated string categories = 2;
+  repeated string subcategories = 3;
+  repeated string uses = 4;
+  repeated string markets = 5;
+  repeated string origins = 6;
+  string _id = 7;
+}

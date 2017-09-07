@@ -1,21 +1,14 @@
 {
-  "name": "item-server",
+  "name": "client-gateway",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A client gateway using GraphQL & RESTful endpoints",
+  "main": "./bin/www",
   "scripts": {
-    "start": "NODE_ENV=development node ./bin/www",
+    "start": "node ./bin/www",
     "build": "babel ./src -d ./dist --copy-files",
     "prebuild": "rm -rf dist/*",
-    "dev": "node ./bin/www",
-    "predev": "./scripts/wait-for-it.sh -h postgres -p 5432 && npm run migrate:dev",
-    "faker": "babel-node database/faker",
-    "db:migrate:dev": "",
-    "db:migrate:test": "",
-    "db:seed": "md-seed run",
-    "db:seed-setup": "md-seed init",
-    "pretest": "./scripts/wait-for-it.sh -h test-postgres -p 5432 && npm run migrate:test",
-    "test": "./scripts/wait-for-it.sh -h test-api -p 8443 && ava --verbose",
+    "pretest": "",
+    "test": "ava --verbose",
     "test:local": "OSX=true ava --verbose",
     "test:watch": "ava --verbose --watch",
     "nsp": "nsp check"
@@ -23,11 +16,15 @@
   "author": "Sean Graham sgraham785@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-express": "^1.1.2",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
     "forever-monitor": "^1.7.1",
+    "graphql": "^0.11.1",
+    "graphql-tools": "^1.2.1",
     "grpc": "^1.4.1",
-    "mongodb": "^2.2.31",
-    "mongoose": "^4.11.7",
-    "mongoose-data-seed": "^1.0.2"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "@ava/babel-preset-stage-4": "^1.1.0",
@@ -45,7 +42,8 @@
     "babel-register": "^6.24.1",
     "chance": "^1.0.10",
     "nsp": "^2.7.0",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "swagger-jsdoc": "^1.9.7"
   },
   "babel": {
     "presets": [

@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import Chance from 'chance'
 
 import { Seeder } from 'mongoose-data-seed'
@@ -5,11 +7,37 @@ import Model from '../../model'
 
 const chance = new Chance()
 
-const CATS = ['category1', 'category2', 'category3']
-const CATS2 = ['category1', 'category2', 'category3', '']
-const MARKETS = ['Education', 'Healthcare', 'Workplace', 'Lab']
-const CLASS = ['Modern', 'Traditional', 'Transitional', 'Mid-Century', 'Classic Modern', 'Retro', 'Vintage', 'Industrial']
-const MATERIAL = ['Mesh', 'Faux', 'Leather', 'Fabric', 'Vinyl', 'Leather']
+const categories = [
+  'Seating',
+  'Desks + Tables',
+  'Storage',
+  'Worktools',
+  'Accessories'
+]
+const markets = [
+  'Education',
+  'Healthcare',
+  'Workplace',
+  'Lab'
+]
+const classifications = [
+  'Modern',
+  'Traditional',
+  'Transitional',
+  'Mid-Century',
+  'Classic Modern',
+  'Retro',
+  'Vintage',
+  'Industrial'
+]
+const materials = [
+  'Mesh',
+  'Faux',
+  'Leather',
+  'Fabric',
+  'Vinyl',
+  'Leather'
+]
 const IMG = [`${chance.url({
   domain: 'lorempixel.com', path: 'g/190/255/city'
 })}`, `${chance.url({
@@ -23,9 +51,11 @@ const IMG = [`${chance.url({
 })}`]
 const TAGS = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
 
+const itemsFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'items.json'), 'utf8'))
+
 class ItemsSeeder extends Seeder {
   async beforeRun () {
-    this.itemData = this._generateItems()
+    this.itemData = await this._generateItems()
   }
 
   async shouldRun () {
@@ -38,70 +68,9 @@ class ItemsSeeder extends Seeder {
   }
 
   _generateItems () {
-    return Array.apply(null, Array(200)).map(() => {
-      const randomPrimaryImages = `${chance.url({
-        domain: 'lorempixel.com', path: '190/255/abstract'
-      })}/${chance.integer({ min: 1, max: 10 })}`
-      const randomSecondaryImages = `${chance.url({
-        domain: 'lorempixel.com', path: '190/255/transport'
-      })}/${chance.integer({ min: 1, max: 10 })}`
-      const randomAdditionalImages = IMG
-      const randomCount = chance.integer({ min: 0, max: 5 })
-      // console.log(chance.sentence({ words: 2 }))
-      return {
-        name: chance.sentence({ words: 2 }),
-        vendor: chance.name({ nationality: 'en' }),
-        sku: chance.google_analytics(),
-        category: {
-          primary: chance.pickone(CATS),
-          secondary: chance.pickone(CATS2)
-        },
-        classification: chance.pickone(CLASS),
-        market: chance.pickone(MARKETS),
-        price: chance.dollar(),
-        details: {
-          materials: {
-            primary: {
-              code: chance.bb_pin(),
-              description: chance.sentence(),
-              type: chance.pickone(MATERIAL),
-              chip: chance.avatar()
-            },
-            secondary: {
-              code: chance.bb_pin(),
-              description: chance.sentence(),
-              type: chance.pickone(MATERIAL),
-              chip: chance.avatar()
-            }
-          },
-          colors: {
-            primary: {
-              code: chance.bb_pin(),
-              description: chance.sentence(),
-              type: chance.word(),
-              pantone: chance.integer({ min: 100, max: 5999 }),
-              rgb: chance.color({ format: 'rgb' }),
-              hex: chance.color({ format: 'hex' }),
-              chip: chance.avatar()
-            },
-            secondary: {
-              code: chance.bb_pin(),
-              description: chance.sentence(),
-              type: chance.word(),
-              pantone: chance.integer({ min: 100, max: 5999 }),
-              rgb: chance.color({ format: 'rgb' }),
-              hex: chance.color({ format: 'hex' }),
-              chip: chance.avatar()
-            }
-          }
-        },
-        images: {
-          primary: randomPrimaryImages,
-          secondary: randomSecondaryImages,
-          additional: chance.pickset(randomAdditionalImages, randomCount)
-        },
-        tags: chance.pickset(TAGS, randomCount)
-      }
+    return itemsFile.map((item) => {
+      // console.log(item)
+      return item
     })
   }
 }

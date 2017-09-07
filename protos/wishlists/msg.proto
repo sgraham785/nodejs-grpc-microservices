@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package wishlists.msg;
+
+message Id {
+  string _id = 1;
+}
+
+message UserId {
+  string userId = 1;
+}
+
+message ItemId {
+  string itemId = 1;
+}
+
+message Data {
+  message Payload {
+    string _id = 1;
+    string name = 2;
+    string userId = 3;
+    repeated string itemsArray = 4;
+  }
+  repeated Payload data = 1;
+}
+
+

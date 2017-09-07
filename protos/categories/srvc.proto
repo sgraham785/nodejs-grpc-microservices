@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package categories.srvc;
+
+import '../google/protobuf/empty.proto';
+import 'msg.proto';
+
+service Categories {
+  rpc CreateCategory (categories.msg.Data.Payload) returns (categories.msg.Data);
+  rpc ListCategories (google.protobuf.Empty) returns (categories.msg.Data);
+  rpc GetCategoryById (categories.msg.Id) returns (categories.msg.Data);
+  rpc UpdateCategory (categories.msg.Data.Payload) returns (categories.msg.Data);
+  rpc DeleteCategoryById (categories.msg.Id) returns (categories.msg.Data);
+}
