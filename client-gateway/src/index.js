@@ -37,5 +37,5 @@ app.use('/graphql', graphqlExpress({
 }))
  */
 app.listen(3000, () => {
-  console.log('REST Service listening on port 3000!')
+  console.log('Client Gateway is listening on port 3000!')
 })
