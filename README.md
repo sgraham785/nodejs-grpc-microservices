@@ -20,12 +20,18 @@ This should install everything the apps need to run on your local machines.
 cd workplace-api
 make
 ```
-Seed the database (defaults to 200 records)
+Seed the items database (defaults to 97 records)
 ```
-cd /path/to/items-server
+cd items-server
 npm run db:seed
 ```
 **NOTE:** Full text search may take sometime to index after your first request. TODO: add way to verify search index is available, for now use [MongoDB Compass](https://docs.mongodb.com/compass/master/install/)
+
+Seed the filters database:
+```
+cd ../filters-server
+npm run db:seed
+```
 
 ### Usage
 
@@ -54,7 +60,43 @@ TODO
 
 ## Deployment
 
-TBD
+Change into directory of single project:
+```
+cd /path/to/project
+```
+Build image:
+```
+make build
+```
+Tag image for registry:
+```
+docker tag workplacex/filters-server gcr.io/workplacex-179405/workplacex/filters-server:latest
+```
+Push tagged image to registry:
+```
+gcloud docker -- push gcr.io/workplacex-179405/workplacex/filters-server:latest
+```
+Auth to container cluster:
+```
+gcloud container clusters get-credentials workplacex-prototype --zone us-west1-a --project workplacex-179405
+```
+Connect to Kubrenetes GUI:
+```
+kubectl proxy
+http://localhost:8001/ui
+```
+Change directory to single project:
+```
+cd /path/to/project
+```
+Create deployment:
+```
+kubectl create -f k8s/deployment.yml
+```
+Create service:
+```
+kubectl create -f k8s/service.yml
+```
 
 ## Built With
 

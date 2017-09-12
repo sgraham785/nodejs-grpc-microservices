@@ -5,3 +5,4 @@ build:
   working_dir: /usr/src/app
   volumes:
     - ../:/usr/src/app
+    - ../../protos:/usr/src/app/protos

@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-export IMAGE=categories-server
+export IMAGE=workplacex/filters-server
 ifdef GIT_COMMIT
   export IMAGE_NAME=${IMAGE}:${GIT_COMMIT}
 else
@@ -31,7 +31,6 @@ clean:
 	- sudo docker-compose -f docker/dev.yml down
 	- sudo rm -rf node_modules
 npm-install:
-	# npm i -g npm@5.2.0
 	npm install
 	npm run build
 	# npm prune --production

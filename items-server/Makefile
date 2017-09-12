@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-export IMAGE=items-server
+export IMAGE=workplacex/items-server
 ifdef GIT_COMMIT
   export IMAGE_NAME=${IMAGE}:${GIT_COMMIT}
 else

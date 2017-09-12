@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pulse-client
+  namespace: prototype
+  annotations:
+    kubernetes.io/ingress.class: "linkerd"
+spec:
+  rules:
+  - host: services.parkhub.com
+    http:
+      paths:
+      - path: /pulse/.*
+        backend:
+          serviceName: pulse-client
+          servicePort: http
+      - path: /graphql
+        backend:
+          serviceName: pulse-client
+          servicePort: http

@@ -1,6 +1,6 @@
 version: '3'
 services:
-  categories-server:
+  filters-server:
     build: ../
     command: npm run start
     volumes:

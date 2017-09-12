@@ -5,8 +5,10 @@ RUN mkdir -p /usr/src/app/logs
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package.json .
-ADD .foreverignore .
-COPY node_modules .
-COPY dist .
+COPY bin bin
+COPY dist dist
+COPY node_modules node_modules
+COPY protos protos
+COPY package.json package.json
+COPY .foreverignore .foreverignore
 CMD npm start

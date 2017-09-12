@@ -3,16 +3,16 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const categorySchema = new Schema({
-  vendors: {
+  vendor: {
     type: [String],
     unique: true,
     required: [true, 'Category name required']
   },
-  categories: [String],
-  subcategories: [String],
-  uses: [String],
-  markets: [String],
-  origins: [String]
+  category: [String],
+  subcategory: [String],
+  use: [String],
+  market: [String],
+  origin: [String]
 }, {
   toJSON: {
     versionKey: false,

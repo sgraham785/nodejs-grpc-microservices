@@ -5,6 +5,6 @@ user-server
 wishlist-server
 
 **/dist
-**/k8s
 **/node_modules
+**/protos
 **/src/graphql

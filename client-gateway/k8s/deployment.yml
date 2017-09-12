@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client-gateway
+  namespace: default
+  labels:
+    name: client-gateway
+    type: api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: client-gateway
+        type: api
+    spec:
+      containers:
+      - image: gcr.io/workplacex-179405/workplacex/client-gateway:latest
+        imagePullPolicy: Always
+        name: client-gateway
+        ports:
+         - containerPort: 3000
+           name: clientgateway
+        env:
+        - name: REDEPLOY_LATEST_IMAGE
+          value: por-favor

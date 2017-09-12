@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: filters-server-deployment
+  namespace: default
+  labels:
+    name: filters-server
+    type: backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: filters-server
+        type: backend
+    spec:
+      containers:
+      - image: gcr.io/workplacex-179405/workplacex/filters-server:latest
+        imagePullPolicy: Always
+        name: filters-server
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: DB_URL
+          value: mongodb://mongo/workplacex
+        - name: REDEPLOY_LATEST_IMAGE
+          value: por-favor
+        ports:
+         - containerPort: 50051
+           name: filters-server

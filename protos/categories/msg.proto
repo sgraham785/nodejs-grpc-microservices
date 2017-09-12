@@ -15,11 +15,11 @@ message Data {
 }
 
 message Filters {
-  repeated string vendors = 1;
-  repeated string categories = 2;
-  repeated string subcategories = 3;
-  repeated string uses = 4;
-  repeated string markets = 5;
-  repeated string origins = 6;
+  repeated string vendor = 1;
+  repeated string category = 2;
+  repeated string subcategory = 3;
+  repeated string use = 4;
+  repeated string market = 5;
+  repeated string origin = 6;
   string _id = 7;
 }

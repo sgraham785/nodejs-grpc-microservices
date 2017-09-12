@@ -1,6 +1,6 @@
 import mongooseLib from 'mongoose'
 
-import ItemsSeeder from './src/db/seeds/items.seeder'
+import ItemsSeeder from './db/seeds/items.seeder'
 
 mongooseLib.Promise = global.Promise
 

@@ -19,7 +19,7 @@ client.post('/categories', async (req, res) => {
   }
 })
 
-client.get('/categories', async (req, res) => {
+client.get('/filters', async (req, res) => {
   try {
     return res.json(await listCategories(req.body))
   } catch (err) {

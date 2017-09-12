@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: items-server
+  namespace: default
+  labels:
+    name: items-server
+    type: backend
+spec:
+  clusterIP: None
+  ports:
+    - name: grpc
+      port: 50051
+  selector:
+    name: items-server
+    type: backend

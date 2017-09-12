@@ -6,7 +6,7 @@ const forever = require('forever-monitor')
 
 // use forever to start a script
 function start (file) {
-  let options = {}
+  let options = { }
   if (process.env.NODE_ENV === 'development') {
     options = {
       'command': 'babel-node',
