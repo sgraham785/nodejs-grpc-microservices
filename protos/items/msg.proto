@@ -20,13 +20,14 @@ message Response {
     string _id = 1;
     string name = 2;
     string vendor = 3;
-    string sku = 4;
-    repeated string category = 5;
+    string origin = 4;
+    string category = 5;
     string subcategory = 6;
     string market = 7;
     string price = 8;
     string image = 11;
     repeated string tags = 12;
+    repeated string use = 13;
   }
   repeated Item data = 1;
 }

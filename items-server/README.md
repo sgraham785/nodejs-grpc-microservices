@@ -1,8 +1,5 @@
 ```
-sudo docker build -t workplacex/filters-server . 
-```
-```
-docker tag workplacex/items-server gcr.io/workplacex-179405/workplacex/items-server:latest
+sudo docker build -t gcr.io/workplacex-179405/workplacex/items-server . 
 ```
 ```
 gcloud docker -- push gcr.io/workplacex-179405/workplacex/items-server:latest
