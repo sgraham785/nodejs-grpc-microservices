@@ -21,7 +21,7 @@ message Response {
     string name = 2;
     string vendor = 3;
     string sku = 4;
-    repeated string categories = 5;
+    repeated string category = 5;
     string subcategory = 6;
     string market = 7;
     string price = 8;

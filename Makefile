@@ -24,8 +24,6 @@ up-dev:
 	done
 
 down:
-	for dir in $(CODE_DIRS); do \
-		$(MAKE) -C $$dir down; \
-	done
+	$(MAKE) -C client-gateway down
 
 .PHONY: up-dev down
