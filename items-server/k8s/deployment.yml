@@ -24,7 +24,7 @@ spec:
         - name: DB_URL
           value: mongodb://mongo/workplacex
         - name: REDEPLOY_LATEST_IMAGE
-          value: baha
+          value: timestamp
         ports:
          - containerPort: 50051
            name: items-server

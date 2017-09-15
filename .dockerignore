@@ -1,11 +1,11 @@
-.DS_Store
 .vscode
 project-server
 scripts
 user-server
 wishlist-server
 
-**/dist
+**/dkr
+**/k8s
 **/node_modules
-**/protos
-**/src/graphql
+**/src
+**/.gitignore

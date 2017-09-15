@@ -1,6 +1,7 @@
 version: '3'
 services:
-  client-gateway:
+  wpx_client-gateway:
+    image: node:8.4
     build: ../
     command: npm run start
     volumes:
@@ -8,13 +9,14 @@ services:
       - ../../protos:/usr/src/app/protos
     environment:
       - NODE_ENV=development
+      - DEBUG=true
     ports:
       - "3000:3000"
     external_links:
-      - docker_items-server_1:items-server
-      - docker_categories-server_1:categories-server
+      - dkr_wpx_items-server_1:items-server
+      - dkr_wpx_filters-server_1:filters-server
     networks:
-      - default
+      - wpx
   swagger-ui:
     image: swaggerapi/swagger-ui
     environment:
@@ -22,6 +24,6 @@ services:
     ports:
       - 8080:8080
 networks:
-  default:
+  wpx:
     external:
-      name: docker_default
+      name: dkr_wpx

@@ -6,7 +6,6 @@ import bodyParser from 'body-parser'
 // import schema from './graphql'
 import itemRoutes from './resources/items/routes'
 import categoryRoutes from './resources/categories/routes'
-import { swaggerSpec } from './lib/swagger'
 
 const app = express()
 
@@ -19,11 +18,11 @@ app.use('/v0', itemRoutes)
 app.use('/v0', categoryRoutes)
 
 // ======== *** DEVELOPMENT ONLY ROUTES ***
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   // Swagger API docs
   app.get('/api-docs.json', (req, res) => {
     res.setHeader('Content-Type', 'application/json')
-    res.send(swaggerSpec)
+    res.send(require('./lib/swagger').swaggerSpec)
   })
   /**
   app.use('/graphiql', graphiqlExpress({

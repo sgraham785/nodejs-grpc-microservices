@@ -1,8 +1,0 @@
-build:
-  image: node:8.4
-  environment:
-    - NODE_ENV=development
-  working_dir: /usr/src/app
-  volumes:
-    - ../:/usr/src/app
-    - ../../protos:/usr/src/app/protos

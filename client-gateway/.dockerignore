@@ -1,0 +1,14 @@
+# Relative to docker build context ../
+.vscode
+.git
+.DS_Store
+
+**/dkr
+**/k8s
+**/node_modules
+**/src
+**/.gitignore
+**/Dockerfile
+**/Dockerfile.prod
+**/Makefile
+**/README.md

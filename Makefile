@@ -1,29 +1,64 @@
-.DEFAULT_GOAL := build-dev
+.DEFAULT_GOAL := up
 
 help:
 	@echo
 	@echo
-	@echo " make (build-dev)				- compile & build main image(s)"
+	@echo " make build			- compile & build main image(s)"
 	@echo
-	@echo " make up-dev			- run container(s) in development mode"
+	@echo " make (up)			- run container(s) in development mode"
 	@echo
 	@echo " make down			- removes the container(s)"
 	@echo
 	@echo
 
-CODE_DIRS = items-server categories-server client-gateway
+GCP_PROJECT = workplacex-179405/workplacex
+TS := $(shell /bin/date "+%Y-%m-%d_%H-%M-%S")
+## if APPS is empty then use hard-coded dirs
+ifeq ($(strip $(APPS)),)
+CODE_DIRS = items-server filters-server client-gateway
+else
+CODE_DIRS = $(APPS)
+endif
 
-build-dev:
+init:
 	for dir in $(CODE_DIRS); do \
-		$(MAKE) -C $$dir build-dev; \
+		$(MAKE) -C $$dir init; \
 	done
 
-up-dev:
+build:
 	for dir in $(CODE_DIRS); do \
-		$(MAKE) -C $$dir up-dev; \
+		$(MAKE) -C $$dir build; \
+	done
+
+up:
+	for dir in $(CODE_DIRS); do \
+		$(MAKE) -C $$dir up; \
 	done
 
 down:
-	$(MAKE) -C client-gateway down
+	$(MAKE) -C client-gateway down;
 
-.PHONY: up-dev down
+build-gcr: npm-build
+	for dir in $(CODE_DIRS); do \
+		sudo docker build \
+		-f $$dir/Dockerfile.prod \
+		-t gcr.io/${GCP_PROJECT}/$$dir \
+		.; \
+	done
+
+ship:
+	for dir in $(CODE_DIRS); do \
+		$(MAKE) -C $$dir ship; \
+	done
+
+deploy:
+	for dir in $(CODE_DIRS); do \
+		$(MAKE) -C $$dir deploy; \
+	done
+
+bsd:
+	for dir in $(CODE_DIRS); do \
+		$(MAKE) -C $$dir build ship deploy; \
+	done
+
+.PHONY: up-dev down ship deploy

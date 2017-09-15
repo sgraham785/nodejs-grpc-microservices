@@ -1,11 +1,11 @@
-database
 dist
-docker
+dkr
+k8s
 logs
-node_modules
 sslcerts
 npm-debug.log
 .gitignore
 Dockerfile
+Dockerfile.prod
 Makefile
 README.md
