@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package users.msg;
+
+message Id {
+  string _id = 1;
+}
+
+message Request {
+  string q = 1;
+  int32 limit = 2;
+  int32 page = 3;
+  string sort = 4;
+}
+
+message Response {
+  message User {
+    string _id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string password = 5;
+    string company = 6;
+    string address = 7;
+    string city = 8;
+    string state = 11;
+    string zipcode = 12;
+    string phone = 13;
+  }
+  repeated User data = 1;
+}

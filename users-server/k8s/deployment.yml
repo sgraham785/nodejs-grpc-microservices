@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: users-server-deployment
+  namespace: default
+  labels:
+    name: users-server
+    type: backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: users-server
+        type: backend
+    spec:
+      containers:
+      - image: gcr.io/workplacex-179405/workplacex/users-server:latest
+        imagePullPolicy: Always
+        name: users-server
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: DB_URL
+          value: mongodb://mongo/workplacex
+        - name: REDEPLOY_LATEST_IMAGE
+          value: timestamp
+        ports:
+         - containerPort: 50051
+           name: users-server
