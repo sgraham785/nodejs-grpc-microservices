@@ -32,7 +32,11 @@ Seed the filters database:
 cd ../filters-server
 npm run db:seed
 ```
-
+Seed the users database:
+```
+cd ../users-server
+npm run db:seed
+```
 ### Usage
 
 You can then use swagger or `curl` for requests:
@@ -47,12 +51,12 @@ make down
 To start them back up again with out rebuilding them:
 ```
 cd /path/to/workplace-api
-make up-dev
+make up
 ```
 
 ### Swagger
 
-After app servers start up swagger ui will automatically read from the rest-server/api-docs.json. You should be able to access swagger [here](http://localhost:8080)
+After app servers start up swagger ui will automatically read from the client-gateway/api-docs.json. You should be able to access swagger [here](http://localhost:8080)
 
 ## Running the tests
 
