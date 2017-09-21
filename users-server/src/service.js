@@ -1,14 +1,14 @@
 import User from './model'
-import removeEmptyObj from './utils/removeEmptyObj'
+// import removeEmptyObj from './utils/removeEmptyObj'
 
 const UserService = {
   listUsers (call, cb) {
     const params = call.request
     console.log('REQUEST PARAMS: ', JSON.stringify(params))
-    const filter = removeEmptyObj(params.filter)
+    // const filter = removeEmptyObj(params.filter)
     let sort = params.sort.replace(/,/g, ' ')
     try {
-      User.find({ $or: [ filter ] })
+      User.find(/* { $or: [ filter ] } */)
         // .select('first_name last_name email company')
         .limit(params.limit)
         .sort(sort)

@@ -3,9 +3,9 @@ import swaggerJSDoc from 'swagger-jsdoc'
 
 const swaggerDefinition = {
   info: {
-    title: 'Items API', // Title (required)
+    title: 'WorkplaceX API', // Title (required)
     version: '0.0.1', // Version (required)
-    description: 'An API for Items' // Description (optional)
+    description: 'An API client gateway for WorkplaceX' // Description (optional)
   }
   // host: host, // Host (optional)
   // basePath: '/', // Base path (optional)
@@ -17,7 +17,7 @@ let options = {
   swaggerDefinition,
   // Path to the API docs
   apis: [
-    path.resolve(__dirname, '../../resources/**/swagger.js')
+    path.resolve(__dirname, '../resources/**/swagger.js')
   ]
 }
 

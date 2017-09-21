@@ -23,11 +23,11 @@ client.post('/users', async (req, res) => {
 client.get('/users', async (req, res) => {
   let limit = parseInt(req.query.limit) || 10
   let page = parseInt(req.query.page) || 0
-  let sort = req.query.sort || 'name'
-  let filter = req.query.filter || {}
-  console.log('filter--> ', filter)
-  const request = { limit, page, sort, filter }
-  console.log('request--> ', request)
+  let sort = req.query.sort || 'last_name'
+  // let filter = req.query.filter || {}
+  // console.log('filter--> ', filter)
+  const request = { limit, page, sort }
+  // console.log('request--> ', request)
   try {
     return res.json(await listUsers(request))
   } catch (err) {

@@ -25,6 +25,7 @@
  * /v0/items/:
  *   get:
  *     description: Get items for the grid view, fields=_id, name, price, images
+ *     tags: [Items]
  *     produces:
  *       - application/json
  *     parameters:
@@ -71,6 +72,7 @@
  * /v0/items/{id}/:
  *   get:
  *     description: Get an item by id with all it's fields
+ *     tags: [Items]
  *     produces:
  *       - application/json
  *     parameters:
@@ -117,6 +119,7 @@
  * /v0/items/search/:
  *   get:
  *     description: Get full text search items for the grid view, fields=_id, name, price, images
+ *     tags: [Items]
  *     produces:
  *       - application/json
  *     parameters:

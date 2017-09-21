@@ -1,11 +1,11 @@
 import path from 'path'
 import grpc from 'grpc'
-import UserService from './service'
+import WishlistServices from './service'
 
-const PROTO_PATH = path.resolve(__dirname, '../protos/users/srvc.proto')
+const PROTO_PATH = path.resolve(__dirname, '../protos/wishlists/srvc.proto')
 
 const server = new grpc.Server()
-const UserProto = grpc.load(PROTO_PATH).users.srvc
+const WishlistsProto = grpc.load(PROTO_PATH).wishlists.srvc
 
 function injectClients ({ dbConn }) {
   process.once('SIGINT', () => {
@@ -13,13 +13,13 @@ function injectClients ({ dbConn }) {
   })
 
   server.addService(
-    UserProto.Users.service,
-    UserService
+    WishlistsProto.Wishlists.service,
+    WishlistServices
   )
 
   server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure())
 
-  console.log('Users grpc server ready')
+  console.log('Wishlists grpc server ready')
 
   server.start()
 }

@@ -2,16 +2,15 @@ syntax = "proto3";
 
 package wishlists.srvc;
 
-import '../google/protobuf/empty.proto';
 import 'msg.proto';
 
 service Wishlists {
-  rpc CreateWishlist (wishlists.msg.Data.Payload) returns (wishlists.msg.Data);
-  rpc ListWishlists (google.protobuf.Empty) returns (wishlists.msg.Data);
-  rpc GetWishlistsById (wishlists.msg.Id) returns (wishlists.msg.Data);
-  rpc DeleteWishlistById (wishlists.msg.Id) returns (wishlists.msg.Data);
-  rpc GetWishlistsByUserId (wishlists.msg.UserId) returns (wishlists.msg.Data);
-
-  rpc AddItemToWishlist (wishlists.msg.ItemId) returns (wishlists.msg.Data);
-  rpc RemoveItemFromWishlist (wishlists.msg.ItemId) returns (wishlists.msg.Data);
+  rpc CreateWishlist (wishlists.msg.Wishlist) returns (wishlists.msg.Response);
+  rpc ListWishlists (wishlists.msg.Request) returns (wishlists.msg.Response);
+  rpc GetWishlistById (wishlists.msg.Id) returns (wishlists.msg.Response);
+  rpc GetWishlistsByUsersId (wishlists.msg.UsersId) returns (wishlists.msg.Response);
+  rpc UpdateWishlistNameById (wishlists.msg.NameRequest) returns (wishlists.msg.Response);
+  rpc AddItemToWishlist (wishlists.msg.ItemsRequest) returns (wishlists.msg.Response);
+  rpc RemoveItemFromWishlist (wishlists.msg.ItemsRequest) returns (wishlists.msg.Response);
+  rpc DeleteWishlistById (wishlists.msg.Id) returns (wishlists.msg.Response);
 }

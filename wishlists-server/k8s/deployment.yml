@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wishlists-server-deployment
+  namespace: default
+  labels:
+    name: wishlists-server
+    type: backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: wishlists-server
+        type: backend
+    spec:
+      containers:
+      - image: gcr.io/workplacex-179405/workplacex/wishlists-server:latest
+        imagePullPolicy: Always
+        name: wishlists-server
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: DB_URL
+          value: mongodb://mongo/workplacex
+        - name: REDEPLOY_LATEST_IMAGE
+          value: timestamp
+        ports:
+         - containerPort: 50051
+           name: wishlists-server

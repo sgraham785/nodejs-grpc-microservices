@@ -7,7 +7,7 @@ message Id {
 }
 
 message Request {
-  string q = 1;
+  // string q = 1;
   int32 limit = 2;
   int32 page = 3;
   string sort = 4;

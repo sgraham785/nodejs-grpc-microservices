@@ -1,0 +1,11 @@
+dist
+dkr
+k8s
+logs
+sslcerts
+npm-debug.log
+.gitignore
+Dockerfile
+Dockerfile.prod
+Makefile
+README.md

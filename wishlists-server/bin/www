@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+let server = process.env.NODE_ENV === 'development'
+  ? '../src/index.js'
+  : '../dist/index.js'
+require('./_setup').start(server)

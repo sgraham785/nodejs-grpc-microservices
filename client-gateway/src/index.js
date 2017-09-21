@@ -6,6 +6,8 @@ import bodyParser from 'body-parser'
 // import schema from './graphql'
 import itemRoutes from './resources/items/routes'
 import categoryRoutes from './resources/categories/routes'
+import userRoutes from './resources/users/routes'
+import wishlistRoutes from './resources/wishlists/routes'
 
 const app = express()
 
@@ -16,6 +18,8 @@ app.use(bodyParser.json())
 
 app.use('/v0', itemRoutes)
 app.use('/v0', categoryRoutes)
+app.use('/v0', userRoutes)
+app.use('/v0', wishlistRoutes)
 
 // ======== *** DEVELOPMENT ONLY ROUTES ***
 if (process.env.NODE_ENV !== 'production') {

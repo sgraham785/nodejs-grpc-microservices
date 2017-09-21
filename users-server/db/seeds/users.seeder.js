@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder {
   }
 
   _generateUsers () {
-    return Array.apply(null, Array(10)).map(() => {
+    return Array.apply(null, Array(25)).map(() => {
       return {
         first_name: chance.first({ nationality: 'en' }),
         last_name: chance.last({ nationality: 'en' }),

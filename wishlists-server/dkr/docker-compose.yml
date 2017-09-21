@@ -1,0 +1,23 @@
+version: '3'
+services:
+  wpx_wishlists-server:
+    image: node:8.4
+    build: ../
+    command: npm run start
+    volumes:
+      - ../:/usr/src/app
+      - ../../protos:/usr/src/app/protos
+    environment:
+      - NODE_ENV=development
+      - DEBUG=true
+      - DB_URL=mongodb://workplacex-db/workplacex
+    ports:
+      - "50054:50051"
+    links:
+      - workplacex-db:mongo
+    depends_on:
+      - workplacex-db
+  workplacex-db:
+    image: mongo
+    ports:
+      - "27017:27017"

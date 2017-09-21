@@ -15,8 +15,10 @@ services:
     external_links:
       - dkr_wpx_items-server_1:items-server
       - dkr_wpx_filters-server_1:filters-server
+      - dkr_wpx_users-server_1:users-server
+      - dkr_wpx_wishlists-server_1:wishlists-server            
     networks:
-      - wpx
+      - default
   swagger-ui:
     image: swaggerapi/swagger-ui
     environment:
@@ -24,6 +26,6 @@ services:
     ports:
       - 8080:8080
 networks:
-  wpx:
+  default:
     external:
-      name: dkr_wpx
+      name: dkr_default

@@ -2,7 +2,6 @@
 .vscode
 project-server
 scripts
-wishlists-server
 
 **/dist
 **/node_modules
