@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: swagger-ui
+  namespace: default
+  labels:
+    name: swagger-ui
+    type: api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: swagger-ui
+        type: api
+    spec:
+      containers:
+      - image: swaggerapi/swagger-ui
+        imagePullPolicy: Always
+        name: swagger-ui
+        ports:
+         - containerPort: 8080
+           name: swaggerui
+        env:
+        - name: API_URL
+          value: http://35.197.104.118/api-docs.json

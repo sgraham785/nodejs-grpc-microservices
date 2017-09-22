@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: swagger-ui
+  namespace: default
+  labels:
+    name: swagger-ui
+    type: api
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    name: swagger-ui
+    type: api
