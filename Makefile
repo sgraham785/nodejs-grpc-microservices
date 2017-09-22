@@ -25,11 +25,6 @@ init:
 		$(MAKE) -C $$dir init; \
 	done
 
-build:
-	for dir in $(CODE_DIRS); do \
-		$(MAKE) -C $$dir build; \
-	done
-
 up:
 	for dir in $(CODE_DIRS); do \
 		$(MAKE) -C $$dir up; \
@@ -38,12 +33,9 @@ up:
 down:
 	$(MAKE) -C client-gateway down;
 
-build-gcr: npm-build
+build:
 	for dir in $(CODE_DIRS); do \
-		sudo docker build \
-		-f $$dir/Dockerfile.prod \
-		-t gcr.io/${GCP_PROJECT}/$$dir \
-		.; \
+		$(MAKE) -C $$dir build; \
 	done
 
 ship:
@@ -61,4 +53,4 @@ bsd:
 		$(MAKE) -C $$dir build ship deploy; \
 	done
 
-.PHONY: up-dev down ship deploy
+.PHONY: up down ship deploy
