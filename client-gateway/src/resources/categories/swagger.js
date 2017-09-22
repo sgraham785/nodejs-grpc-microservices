@@ -3,7 +3,7 @@
  * /v0/filters/:
  *   get:
  *     description: Get filters
- *     tags: [Filter]
+ *     tags: [Filters]
  *     produces:
  *       - application/json
  *     responses:
