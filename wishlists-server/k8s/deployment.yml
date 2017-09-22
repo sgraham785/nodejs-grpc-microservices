@@ -27,4 +27,4 @@ spec:
           value: timestamp
         ports:
          - containerPort: 50051
-           name: wishlists-server
+           name: wishlists
