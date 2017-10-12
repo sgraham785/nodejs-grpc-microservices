@@ -1,9 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-// import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 
-// import schema from './graphql'
+import schema from './graphql'
 import itemRoutes from './resources/items/routes'
 import categoryRoutes from './resources/categories/routes'
 import userRoutes from './resources/users/routes'
@@ -21,6 +21,10 @@ app.use('/v0', categoryRoutes)
 app.use('/v0', userRoutes)
 app.use('/v0', wishlistRoutes)
 
+app.use('/graphql', graphqlExpress({
+  schema
+}))
+
 // ======== *** DEVELOPMENT ONLY ROUTES ***
 if (process.env.NODE_ENV !== 'production') {
   // Swagger API docs
@@ -28,17 +32,12 @@ if (process.env.NODE_ENV !== 'production') {
     res.setHeader('Content-Type', 'application/json')
     res.send(require('./lib/swagger').swaggerSpec)
   })
-  /**
+
   app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql'
   }))
-   */
 }
-/**
-app.use('/graphql', graphqlExpress({
-  schema
-}))
- */
+
 app.listen(3000, () => {
-  console.log('Client Gateway is listening on port 3000!')
+  console.log('Client Gateway is listening on port 3000!', 'NODE_ENV =', process.env.NODE_ENV)
 })

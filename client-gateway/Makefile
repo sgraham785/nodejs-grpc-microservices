@@ -37,7 +37,6 @@ clean:
 	- sudo rm -rf node_modules
 npm-install:
 	npm set progress=false && \
-	npm config set depth 0 && \
 	npm install && \
 	npm cache clean --force
 build:

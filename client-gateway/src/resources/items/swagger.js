@@ -34,11 +34,11 @@
  *         in: query
  *         required: false
  *         type: integer
- *         example: 15
+ *         example: 10
  *         schema:
  *           $ref: '#/definitions/GetItems'
  *       - name: page
- *         description: Page number (default=0, page * limit)
+ *         description: Page number (default=1)
  *         in: query
  *         required: false
  *         type: integer
@@ -50,7 +50,7 @@
  *         in: query
  *         required: false
  *         type: string
- *         example: -name
+ *         example: name
  *         schema:
  *           $ref: '#/definitions/GetItems'
  *     responses:
@@ -99,18 +99,18 @@
  *       limit:
  *         type: integer
  *         format: int32
- *         example: 15
+ *         example: 10
  *       page:
  *         type: integer
  *         format: int32
- *         example: 2
+ *         example: 1
  *       sort:
  *         type: string
  *         example: name
  *     example:
  *       q: tag1
- *       limit: 25
- *       page: 2
+ *       limit: 10
+ *       page: 1
  *       sort: name
  */
 
@@ -135,11 +135,11 @@
  *         in: query
  *         required: false
  *         type: integer
- *         example: 15
+ *         example: 10
  *         schema:
  *           $ref: '#/definitions/GetItems'
  *       - name: page
- *         description: Page number (default=0, page * limit)
+ *         description: Page number (default=1)
  *         in: query
  *         required: false
  *         type: integer
@@ -151,7 +151,7 @@
  *         in: query
  *         required: false
  *         type: string
- *         example: name,-price
+ *         example: name
  *         schema:
  *           $ref: '#/definitions/GetItems'
  *     responses:

@@ -9,6 +9,5 @@
 **/src
 **/.gitignore
 **/Dockerfile
-**/Dockerfile.prod
 **/Makefile
 **/README.md

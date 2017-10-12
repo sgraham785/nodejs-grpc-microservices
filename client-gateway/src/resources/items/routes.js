@@ -20,7 +20,7 @@ client.post('/items', async (req, res) => {
 
 client.get('/items', async (req, res) => {
   let limit = parseInt(req.query.limit) || 10
-  let page = parseInt(req.query.page) || 0
+  let page = parseInt(req.query.page) || 1
   let sort = req.query.sort || 'name'
   let filter = req.query.filter || {}
   console.log('filter--> ', filter)
@@ -36,7 +36,7 @@ client.get('/items', async (req, res) => {
 client.get('/items/search', async (req, res) => {
   let q = req.query.q || ''
   let limit = parseInt(req.query.limit) || 10
-  let page = parseInt(req.query.page) || 0
+  let page = parseInt(req.query.page) || 1
   let sort = req.query.sort || 'name'
   const request = { q, limit, page, sort }
 
