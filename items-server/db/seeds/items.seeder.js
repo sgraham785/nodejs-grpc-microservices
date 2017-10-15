@@ -1,8 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import Chance from 'chance'
 
 import { Seeder } from 'mongoose-data-seed'
 import Model from '../../dist/model'
+
+const chance = new Chance()
 
 const itemsFile = JSON.parse(fs.readFileSync(path.join(__dirname, 'items.json'), 'utf8'))
 
@@ -22,6 +25,7 @@ class ItemsSeeder extends Seeder {
 
   _generateItems () {
     return itemsFile.map((item) => {
+      item.price = chance.dollar()
       // console.log(item)
       return item
     })
