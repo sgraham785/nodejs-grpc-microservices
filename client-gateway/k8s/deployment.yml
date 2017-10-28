@@ -22,5 +22,7 @@ spec:
          - containerPort: 3000
            name: clientgateway
         env:
+        - name: NODE_ENV
+          value: production
         - name: REDEPLOY_LATEST_IMAGE
           value: timestamp

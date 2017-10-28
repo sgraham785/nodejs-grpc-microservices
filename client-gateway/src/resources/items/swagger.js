@@ -30,11 +30,11 @@
  *       - application/json
  *     parameters:
  *       - name: limit
- *         description: Number of items returned (default=10)
+ *         description: Number of items returned (default=9)
  *         in: query
  *         required: false
  *         type: integer
- *         example: 10
+ *         example: 9
  *         schema:
  *           $ref: '#/definitions/GetItems'
  *       - name: page

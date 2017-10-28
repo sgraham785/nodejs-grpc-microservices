@@ -7,12 +7,12 @@ import '../categories/msg.proto';
 
 service Items {
   // rpc CreateItem (items.msg.Request) returns (items.msg.Response);
-  rpc ListItems (items.msg.Request) returns (items.msg.GridResponse);
+  rpc ListItems (items.msg.Request) returns (items.msg.Response);
   rpc GetItemById (items.msg.Id) returns (items.msg.Response);
   // rpc UpdateItemById (items.msg.Id) returns (items.msg.Response);
   // rpc DeleteItemById (items.msg.Id) returns (items.msg.Response);
 
-  rpc SearchItems (items.msg.Request) returns (items.msg.GridResponse);
+  rpc SearchItems (items.msg.Request) returns (items.msg.Response);
   /**
   rpc ListItemsByVendor (categories.msg.Id) returns (items.msg.GridResponse);
   rpc ListItemsByCategory (categories.msg.Id) returns (items.msg.GridResponse);

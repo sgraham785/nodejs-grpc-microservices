@@ -38,6 +38,7 @@ message Response {
     repeated string use = 13;
   }
   repeated Item data = 1;
+  Meta meta = 2;
 }
 
 message GridResponse {

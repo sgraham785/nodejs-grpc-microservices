@@ -19,7 +19,7 @@ client.post('/items', async (req, res) => {
 })
 
 client.get('/items', async (req, res) => {
-  let limit = parseInt(req.query.limit) || 10
+  let limit = parseInt(req.query.limit) || 9
   let page = parseInt(req.query.page) || 1
   let sort = req.query.sort || 'name'
   let filter = req.query.filter || {}

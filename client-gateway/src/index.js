@@ -24,18 +24,18 @@ app.use('/v0', wishlistRoutes)
 // app.use('/graphql', graphqlExpress({ schema }))
 
 // ======== *** DEVELOPMENT ONLY ROUTES ***
-if (process.env.NODE_ENV !== 'production') {
+// if (process.env.NODE_ENV === 'production') {
   // Swagger API docs
-  app.get('/api-docs.json', (req, res) => {
-    res.setHeader('Content-Type', 'application/json')
-    res.send(require('./lib/swagger').swaggerSpec)
-  })
+app.get('/api-docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  res.send(require('./lib/swagger').swaggerSpec)
+})
   /*
   app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql'
   }))
   */
-}
+// }
 
 app.listen(3000, () => {
   console.log('Client Gateway is listening on port 3000!', 'NODE_ENV =', process.env.NODE_ENV)

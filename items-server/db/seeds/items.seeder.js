@@ -3,7 +3,7 @@ import path from 'path'
 import Chance from 'chance'
 
 import { Seeder } from 'mongoose-data-seed'
-import Model from '../../dist/model'
+import Model from '../../dist/db/model'
 
 const chance = new Chance()
 
@@ -25,7 +25,7 @@ class ItemsSeeder extends Seeder {
 
   _generateItems () {
     return itemsFile.map((item) => {
-      item.price = chance.dollar()
+      item.price = chance.dollar({ max: 999 })
       // console.log(item)
       return item
     })

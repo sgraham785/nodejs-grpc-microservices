@@ -40,7 +40,7 @@ npm-install:
 	npm config set depth 0 && \
 	npm install && \
 	npm cache clean --force
-build:
+build: clean npm-install
 	@echo "Building source..."
 	npm run build
 	@echo "Building image..."

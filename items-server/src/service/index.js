@@ -1,6 +1,6 @@
 import async from 'async'
-import Item from './model'
-import removeEmptyObj from './utils/removeEmptyObj'
+import Item from '../db/model'
+import removeEmptyObj from '../utils/removeEmptyObj'
 
 const ItemService = {
   listItems (call, cb) {
@@ -8,11 +8,17 @@ const ItemService = {
     const filter = removeEmptyObj(params.filter)
     let sort = params.sort.replace(/,/g, ' ')
     let offset = (params.page - 1) * params.limit
-
+    /**
+    let query
+    if ('use' in filter) {
+      query = (Array.isArray(filter.use) === true) ? { 'use': { $all: filter.use.map(i => { return i }) } } : { $or: [filter] }
+    }
+    console.log('query --> ', query)
+    */
     try {
       const findDocs = (callback) => {
         Item.find({ $or: [filter] })
-          .select('name price image')
+          // .select('name price image')
           .limit(params.limit)
           .sort(sort)
           .skip(offset)
@@ -87,7 +93,7 @@ const ItemService = {
     try {
       const findDocs = (callback) => {
         Item.find({ $text: { $search: criteria, $caseSensitive: false } })
-          .select('name price image')
+          // .select('name price image')
           .limit(params.limit)
           .sort(sort)
           .skip(offset)
