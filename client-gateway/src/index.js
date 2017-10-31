@@ -8,6 +8,7 @@ import itemRoutes from './resources/items/routes'
 import categoryRoutes from './resources/categories/routes'
 import userRoutes from './resources/users/routes'
 import wishlistRoutes from './resources/wishlists/routes'
+import lookbooksRoutes from './resources/lookbooks/routes'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use('/v0', itemRoutes)
 app.use('/v0', categoryRoutes)
 app.use('/v0', userRoutes)
 app.use('/v0', wishlistRoutes)
+app.use('/v0', lookbooksRoutes)
 
 // app.use('/graphql', graphqlExpress({ schema }))
 

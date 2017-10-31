@@ -15,7 +15,7 @@ GCP_PROJECT = workplacex-179405/workplacex
 TS := $(shell /bin/date "+%Y-%m-%d_%H-%M-%S")
 ## if APPS is empty then use hard-coded dirs
 ifeq ($(strip $(APPS)),)
-CODE_DIRS = projects-server users-server wishlists-server items-server filters-server projects-server client-gateway
+CODE_DIRS = projects-server users-server wishlists-server items-server filters-server projects-server lookbook-grpc client-gateway
 else
 CODE_DIRS = $(APPS)
 endif

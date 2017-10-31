@@ -16,7 +16,8 @@ services:
       - dkr_wpx_items-server_1:items-server
       - dkr_wpx_filters-server_1:filters-server
       - dkr_wpx_users-server_1:users-server
-      - dkr_wpx_wishlists-server_1:wishlists-server            
+      - dkr_wpx_wishlists-server_1:wishlists-server
+      - dkr_wpx_lookbook-grpc_1:lookbook-server           
     networks:
       - default
   swagger-ui:

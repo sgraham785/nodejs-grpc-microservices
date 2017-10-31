@@ -1,7 +1,10 @@
 .DS_Store
 .vscode
 projects-server
+lookbook-grpc
 scripts
+client-gateway/src/clients/lookbook.js
+client-gateway/src/resources/lookbooks
 
 **/dist
 **/node_modules
